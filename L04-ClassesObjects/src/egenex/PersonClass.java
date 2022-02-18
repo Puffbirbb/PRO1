@@ -7,6 +7,7 @@ public class PersonClass {
     private String address;
     //Person Monthly Salary
     private int monthlySalary;
+    private int yearlySalary;
 
     /**
      * Constructor for Person
@@ -64,9 +65,7 @@ public class PersonClass {
         System.out.println("Name: " + name);
         System.out.println("Address: " + address);
         System.out.println("Monthly Salary: " + monthlySalary);
+        System.out.println("Yearly Salary, incl. 2.5% interest: " + ((monthlySalary * 12) + (0.025 * monthlySalary * 12)));
         System.out.println("*******************");
     }
 }
-
-
-

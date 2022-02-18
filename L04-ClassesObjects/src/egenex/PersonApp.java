@@ -6,6 +6,6 @@ public class PersonApp {
         juan.setMonthlySalary(20000);
         juan.setAddress("Pennsylvania Avenue NW, Washington");
         juan.printPersonClass();
-        //System.out.println("Monthly Salary: " + juan.getMonthlySalary());
+        //System.out.println("Monthly Salary: " + juan.getMonthlySalary);
     }
 }
