@@ -1,4 +1,4 @@
-package egenex;
+package egenexL04;
 
 public class PersonApp {
     public static void main(String[] args){
@@ -6,6 +6,5 @@ public class PersonApp {
         juan.setMonthlySalary(20000);
         juan.setAddress("Pennsylvania Avenue NW, Washington");
         juan.printPersonClass();
-        //System.out.println("Monthly Salary: " + juan.getMonthlySalary);
     }
 }

@@ -1,13 +1,12 @@
-package egenex;
+package egenexL04;
 
 public class PersonClass {
-    // Person Name
+    //Person Name
     private final String name;
     //Person Address
     private String address;
     //Person Monthly Salary
     private int monthlySalary;
-    private int yearlySalary;
 
     /**
      * Constructor for Person
@@ -37,7 +36,7 @@ public class PersonClass {
     /**
      * Return Address
      */
-    public String getAddress(){
+    public String getAddress(String address){
 
         return address;
     }
@@ -54,6 +53,7 @@ public class PersonClass {
      * Return Monthly Salary
      */
     public int getMonthlySalary(int monthlySalary){
+
         return monthlySalary;
     }
 
