@@ -43,9 +43,5 @@ public class opg1gui extends Application {
         Line line = new Line(0, 0, 400, 400);
         pane.getChildren().add(line);
         line.setFill(Color.BLACK);
-
     }
-
-
-
 }
