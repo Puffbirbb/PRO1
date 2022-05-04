@@ -1,0 +1,3107 @@
+Index: L23-Opsamling/L23-Opsamling.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L23-Opsamling/L23-Opsamling.iml b/L23-Opsamling/L23-Opsamling.iml
+new file mode 100644
+--- /dev/null	(date 1650438129142)
++++ b/L23-Opsamling/L23-Opsamling.iml	(date 1650438129142)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: L15-GUI1/src/EgenExGUI/Ex4GUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L15-GUI1/src/EgenExGUI/Ex4GUI.java b/L15-GUI1/src/EgenExGUI/Ex4GUI.java
+new file mode 100644
+--- /dev/null	(date 1647693566684)
++++ b/L15-GUI1/src/EgenExGUI/Ex4GUI.java	(date 1647693566684)
+@@ -0,0 +1,66 @@
++package EgenExGUI;
++
++import com.sun.javafx.scene.control.DoubleField;
++import com.sun.javafx.scene.control.IntegerField;
++import javafx.application.Application;
++import javafx.geometry.Insets;
++import javafx.scene.Scene;
++import javafx.scene.control.Button;
++import javafx.scene.control.CheckBox;
++import javafx.scene.control.Label;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++public class Ex4GUI extends Application {
++
++    @Override
++    public void start(Stage stage) {
++        stage.setTitle("Temperature Converter");
++        GridPane pane = new GridPane();
++        this.initContent(pane);
++        Scene scene = new Scene(pane);
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    private final DoubleField doubleFahrenheit = new DoubleField();
++    private final DoubleField doubleCelsius = new DoubleField();
++    private final CheckBox cbxFahrenheit = new CheckBox();
++    private final CheckBox cbxCelsius = new CheckBox();
++    private void initContent(GridPane pane) {
++        pane.setGridLinesVisible(false);
++
++        pane.setPadding(new Insets(20));
++        pane.setHgap(10);
++        pane.setVgap(10);
++
++        Label lblFahrenheit = new Label("Fahrenheit");
++        pane.add(lblFahrenheit, 0, 0);
++        Label lblCelsius = new Label("Celsius");
++        pane.add(lblCelsius, 2, 0);
++
++        pane.add(doubleFahrenheit, 0, 1);
++        pane.add(doubleCelsius, 2, 1);
++
++        Button btnFConvert = new Button("Convert To Celsius");
++        pane.add(btnFConvert, 0, 2);
++        btnFConvert.setOnAction(event -> this.ConvertFAction());
++
++        Button btnCConvert = new Button("Convert To Fahrenheit");
++        pane.add(btnCConvert, 2, 2);
++        btnCConvert.setOnAction(event -> this.ConvertCAction());
++    }
++
++    private void ConvertFAction() {
++        double F = Double.valueOf(doubleFahrenheit.getValue());
++        double Celcius = (F - 32)*(0.55);
++        doubleCelsius.setValue(Celcius);
++    }
++
++    private void ConvertCAction() {
++        double C = Double.valueOf(doubleCelsius.getValue());
++        double Fahrenheit = (C * (1.8))+32;
++        doubleFahrenheit.setValue(Fahrenheit);
++    }
++
++}
+Index: L15-GUI1/src/EgenExGUI/Ex4APP.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L15-GUI1/src/EgenExGUI/Ex4APP.java b/L15-GUI1/src/EgenExGUI/Ex4APP.java
+new file mode 100644
+--- /dev/null	(date 1647530959208)
++++ b/L15-GUI1/src/EgenExGUI/Ex4APP.java	(date 1647530959208)
+@@ -0,0 +1,7 @@
++package EgenExGUI;
++
++public class Ex4APP {
++    public static void main(String[] args) {
++        Ex4GUI.launch(Ex4GUI.class);
++    }
++}
+Index: L15-GUI1/src/EgenExGUI/Ex3GUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L15-GUI1/src/EgenExGUI/Ex3GUI.java b/L15-GUI1/src/EgenExGUI/Ex3GUI.java
+new file mode 100644
+--- /dev/null	(date 1647538641882)
++++ b/L15-GUI1/src/EgenExGUI/Ex3GUI.java	(date 1647538641882)
+@@ -0,0 +1,66 @@
++package EgenExGUI;
++
++import com.sun.javafx.scene.control.DoubleField;
++import com.sun.javafx.scene.control.IntegerField;
++import javafx.application.Application;
++import javafx.geometry.Insets;
++import javafx.scene.Scene;
++import javafx.scene.control.Button;
++import javafx.scene.control.Label;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++import java.lang.Math;
++
++public class Ex3GUI extends Application {
++
++    @Override
++    public void start(Stage stage) {
++        stage.setTitle("Bank App: Interest Calculator");
++        GridPane pane = new GridPane();
++        this.initContent(pane);
++        Scene scene = new Scene(pane);
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    private final IntegerField intInvestment = new IntegerField();
++    private final IntegerField intYears = new IntegerField();
++    private final DoubleField doubleInterest = new DoubleField();
++    private final DoubleField intFutureValue = new DoubleField();
++    private void initContent(GridPane pane) {
++        pane.setGridLinesVisible(false);
++
++        pane.setPadding(new Insets(20));
++        pane.setHgap(10);
++        pane.setVgap(10);
++
++        Label lblInvestment = new Label("Investments:");
++        pane.add(lblInvestment, 0, 0);
++        Label lblYears = new Label("Years:");
++        pane.add(lblYears, 0, 1);
++        Label lblInterest = new Label("Interest:");
++        pane.add(lblInterest, 0, 2);
++        Label lblFutureValue = new Label("Future Value:");
++        pane.add(lblFutureValue, 0, 4);
++
++        pane.add(intInvestment, 1, 0);
++        pane.add(intYears, 1, 1);
++        pane.add(doubleInterest, 1, 2);
++        pane.add(intFutureValue, 1, 4);
++
++        Button btnCalculate = new Button("Calculate Interest");
++        pane.add (btnCalculate, 1, 3);
++        btnCalculate.setOnAction(event -> this.CalculateAction());
++    }
++
++    private void CalculateAction() {
++        int K = Integer.valueOf(intInvestment.getValue());
++        double r = Double.valueOf(doubleInterest.getValue());
++        int n = Integer.valueOf(intYears.getValue());
++        double K1 = (1+(r/100));
++        System.out.println(K1);
++        double K2 = Math.pow(K1, n);
++        double futureValue = K*K2;
++        intFutureValue.setValue(futureValue);
++    }
++}
+Index: L17-Specifikationer/L17-Specifikationer.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L17-Specifikationer/L17-Specifikationer.iml b/L17-Specifikationer/L17-Specifikationer.iml
+new file mode 100644
+--- /dev/null	(date 1648193560690)
++++ b/L17-Specifikationer/L17-Specifikationer.iml	(date 1648193560690)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: L15-GUI1/src/EgenExGUI/Ex3APP.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L15-GUI1/src/EgenExGUI/Ex3APP.java b/L15-GUI1/src/EgenExGUI/Ex3APP.java
+new file mode 100644
+--- /dev/null	(date 1647457223967)
++++ b/L15-GUI1/src/EgenExGUI/Ex3APP.java	(date 1647457223967)
+@@ -0,0 +1,7 @@
++package EgenExGUI;
++
++public class Ex3APP {
++    public static void main(String[] args) {
++        Ex3GUI.launch(Ex3GUI.class);
++    }
++}
+Index: L23-Opsamling/src/EgenEx/Dog.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L23-Opsamling/src/EgenEx/Dog.java b/L23-Opsamling/src/EgenEx/Dog.java
+new file mode 100644
+--- /dev/null	(date 1650448919218)
++++ b/L23-Opsamling/src/EgenEx/Dog.java	(date 1650448919218)
+@@ -0,0 +1,23 @@
++package EgenEx;
++
++public class Dog {
++    private String name;
++    private boolean pedigree;
++    private int price;
++    private EgenEx.Race race;
++
++    public Dog(String name, boolean pedigree, int price, EgenEx.Race race) {
++        this.name = name;
++        this.pedigree = pedigree;
++        this.price = price;
++        this.race = race;
++    }
++
++    public int getPrice() {
++        return price;
++    }
++
++    public EgenEx.Race getRace() {
++        return race;
++    }
++}
+\ No newline at end of file
+Index: L23-Opsamling/src/EgenEx/Race.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L23-Opsamling/src/EgenEx/Race.java b/L23-Opsamling/src/EgenEx/Race.java
+new file mode 100644
+--- /dev/null	(date 1650448919192)
++++ b/L23-Opsamling/src/EgenEx/Race.java	(date 1650448919192)
+@@ -0,0 +1,5 @@
++package EgenEx;
++
++public enum Race {
++    PUDDEL, BOKSER, TERRIER;
++}
+Index: L23-Opsamling/src/EgenEx/TestDog.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L23-Opsamling/src/EgenEx/TestDog.java b/L23-Opsamling/src/EgenEx/TestDog.java
+new file mode 100644
+--- /dev/null	(date 1650448919155)
++++ b/L23-Opsamling/src/EgenEx/TestDog.java	(date 1650448919155)
+@@ -0,0 +1,34 @@
++package EgenEx;
++
++import java.util.ArrayList;
++
++public class TestDog {
++
++    public static void main(String[] args) {
++        Dog Puddel = new Dog("Grande", true, 20000, Race.PUDDEL);
++        Dog Bokser = new Dog("Feist", true, 15000, Race.BOKSER);
++        Dog Terrier = new Dog("Speedy", false, 2000, Race.TERRIER);
++        Dog TerrierB = new Dog("Scooby", false, 200, Race.TERRIER);
++        Dog PuddelB = new Dog("Scheisse", false, 50, Race.PUDDEL);
++
++        ArrayList<Dog> dogs = new ArrayList<>();
++        dogs.add(Puddel);
++        dogs.add(PuddelB);
++        dogs.add(Bokser);
++        dogs.add(Terrier);
++        dogs.add(TerrierB);
++
++        System.out.println(samletPris(dogs, Race.TERRIER));
++        System.out.println(samletPris(dogs, Race.BOKSER));
++        System.out.println(samletPris(dogs, Race.PUDDEL));
++    }
++    public static int samletPris(ArrayList<Dog> dogs, Race race){
++        int p = 0;
++        for (int i = 0; i < dogs.size(); i++){
++            if (race == dogs.get(i).getRace()){
++                p = p + dogs.get(i).getPrice();
++            }
++        }
++        return p;
++    }
++}
+Index: L15-GUI1/src/EgenExGUI/Ex2GUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L15-GUI1/src/EgenExGUI/Ex2GUI.java b/L15-GUI1/src/EgenExGUI/Ex2GUI.java
+new file mode 100644
+--- /dev/null	(date 1647456852298)
++++ b/L15-GUI1/src/EgenExGUI/Ex2GUI.java	(date 1647456852298)
+@@ -0,0 +1,57 @@
++package EgenExGUI;
++
++import com.sun.javafx.scene.control.IntegerField;
++import javafx.application.Application;
++import javafx.geometry.Insets;
++import javafx.scene.Scene;
++import javafx.scene.control.Button;
++import javafx.scene.control.Label;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++public class Ex2GUI extends Application {
++
++    @Override
++    public void start(Stage stage) {
++        stage.setTitle("Number Manipulator");
++        GridPane pane = new GridPane();
++        this.initContent(pane);
++        Scene scene = new Scene(pane);
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    private final IntegerField intNumber = new IntegerField();
++    private void initContent(GridPane pane) {
++        pane.setGridLinesVisible(false);
++
++        pane.setPadding(new Insets(20));
++        pane.setHgap(10);
++        pane.setVgap(10);
++
++        Label lblNumber = new Label("Number:");
++        pane.add(lblNumber, 0,1);
++
++        pane.add(intNumber, 1, 1);
++
++        Button btnIncrease = new Button("Increase (+)");
++        pane.add(btnIncrease, 3, 0);
++        btnIncrease.setOnAction(event -> this.IncreaseAction());
++
++        Button btnDecrease = new Button("Decrease (-)");
++        pane.add(btnDecrease, 3, 3);
++        btnDecrease.setOnAction(event -> this.DecreaseAction());
++    }
++
++    private void IncreaseAction() {
++        int number = Integer.valueOf(intNumber.getValue());
++        number++;
++        intNumber.setValue(number);
++    }
++
++    private void DecreaseAction() {
++        int number = Integer.valueOf(intNumber.getValue());
++        number--;
++        intNumber.setValue(number);
++    }
++}
+Index: L15-GUI1/src/EgenExGUI/Ex2APP.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L15-GUI1/src/EgenExGUI/Ex2APP.java b/L15-GUI1/src/EgenExGUI/Ex2APP.java
+new file mode 100644
+--- /dev/null	(date 1647451915023)
++++ b/L15-GUI1/src/EgenExGUI/Ex2APP.java	(date 1647451915023)
+@@ -0,0 +1,7 @@
++package EgenExGUI;
++
++public class Ex2APP {
++    public static void main(String[] args) {
++        Ex2GUI.launch(Ex2GUI.class);
++    }
++}
+Index: L15-GUI1/src/EgenExGUI/Ex1APP.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L15-GUI1/src/EgenExGUI/Ex1APP.java b/L15-GUI1/src/EgenExGUI/Ex1APP.java
+new file mode 100644
+--- /dev/null	(date 1647448088782)
++++ b/L15-GUI1/src/EgenExGUI/Ex1APP.java	(date 1647448088782)
+@@ -0,0 +1,7 @@
++package EgenExGUI;
++
++public class Ex1APP {
++    public static void main(String[] args) {
++        Ex1GUI.launch(Ex1GUI.class);
++    }
++}
+Index: L15-GUI1/src/EgenExGUI/Ex1GUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L15-GUI1/src/EgenExGUI/Ex1GUI.java b/L15-GUI1/src/EgenExGUI/Ex1GUI.java
+new file mode 100644
+--- /dev/null	(date 1647451502052)
++++ b/L15-GUI1/src/EgenExGUI/Ex1GUI.java	(date 1647451502052)
+@@ -0,0 +1,58 @@
++package EgenExGUI;
++
++import javafx.application.Application;
++import javafx.geometry.Insets;
++import javafx.scene.Scene;
++import javafx.scene.control.Button;
++import javafx.scene.control.Label;
++import javafx.scene.control.TextField;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++public class Ex1GUI extends Application {
++    @Override
++    public void start(Stage stage) {
++        stage.setTitle("Name Combinator");
++        GridPane pane = new GridPane();
++        this.initContent(pane);
++        Scene scene = new Scene(pane);
++        stage.setScene(scene);
++        stage.show();
++    }
++    private final TextField txfFirstName = new TextField();
++
++    private final TextField txfLastName = new TextField();
++
++    private final TextField txfCombined = new TextField();
++
++    private void initContent(GridPane pane) {
++        pane.setGridLinesVisible(false);
++
++        pane.setPadding(new Insets(20));
++        pane.setHgap(10);
++        pane.setVgap(10);
++
++        Label lblFirstName = new Label("First Name:");
++        pane.add(lblFirstName, 0, 0);
++        Label lblLastName = new Label("Last Name:");
++        pane.add(lblLastName, 2, 0);
++
++        pane.add(txfFirstName, 0, 1, 1, 1);
++        pane.add(txfLastName, 2, 1, 2, 1);
++
++        Label lblCombinedName = new Label("Combined Name:");
++        pane.add(lblCombinedName, 0, 3);
++        pane.add(txfCombined, 0,3, 5, 6);
++        txfCombined.setEditable(false);
++
++        Button btnCombine = new Button("Combine Names");
++        pane.add(btnCombine, 1, 8);
++        btnCombine.setOnAction(event -> this.combineAction());
++    }
++    private void combineAction() {
++        String firstName = String.valueOf(txfFirstName.getText());
++        String lastName = String.valueOf(txfLastName.getText());
++        String cN = firstName + " " + lastName;
++        txfCombined.setText((cN.toString()));
++    }
++}
+Index: L16-GUI2/src/EgenExGUI2/ExtEx4GUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L16-GUI2/src/EgenExGUI2/ExtEx4GUI.java b/L16-GUI2/src/EgenExGUI2/ExtEx4GUI.java
+new file mode 100644
+--- /dev/null	(date 1648107219461)
++++ b/L16-GUI2/src/EgenExGUI2/ExtEx4GUI.java	(date 1648107219461)
+@@ -0,0 +1,75 @@
++package EgenExGUI2;
++
++import javafx.application.Application;
++import javafx.geometry.Insets;
++import javafx.scene.Scene;
++import javafx.scene.control.Label;
++import javafx.scene.control.Slider;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++import java.util.HexFormat;
++
++public class ExtEx4GUI extends Application {
++
++    @Override
++    public void start(Stage stage) {
++        stage.setTitle("RGB Slider");
++        GridPane pane = new GridPane();
++        this.initContent(pane);
++
++        Scene scene = new Scene(pane);
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    private final Slider RSlider = new Slider(0, 255, 1);
++    private final Slider GSlider = new Slider(0, 255, 1);
++    private final Slider BSlider = new Slider(0, 255, 1);
++    private void initContent(GridPane pane) {
++        pane.setPadding(new Insets(20));
++        pane.setHgap(10);
++        pane.setVgap(10);
++        //R
++        Label lblRed = new Label("Red");
++        pane.add(lblRed, 0,0);
++        pane.add(RSlider, 1, 0);
++        RSlider.valueProperty().addListener(event -> this.sliderValueChanged(pane));
++        //G
++        Label lblGreen = new Label("Green");
++        pane.add(lblGreen, 0,1);
++        pane.add(GSlider, 1, 1);
++        GSlider.valueProperty().addListener(event -> this.sliderValueChanged(pane));
++        //B
++        Label lblBlue = new Label("Blue");
++        pane.add(lblBlue, 0,2);
++        pane.add(BSlider, 1, 2);
++        BSlider.valueProperty().addListener(event -> this.sliderValueChanged(pane));
++    }
++
++    //private void rsliderValueChanged(GridPane pane) {
++        //int value = (int) RSlider.getValue();
++        //String color = "#ff00"+String.format("%02X", value);
++        //pane.setStyle("-fx-background:" + color + ";");
++    //}
++
++    //private void gsliderValueChanged(GridPane pane) {
++        //int value = (int) GSlider.getValue();
++        //String color = "#0080"+String.format("%02X", value);
++        //pane.setStyle("-fx-background:" + color + ";");
++    //}
++
++    //private void bsliderValueChanged(GridPane pane) {
++        //int value = (int) BSlider.getValue();
++        //String color = "#0000"+String.format("%02X", value);
++        //pane.setStyle("-fx-background:" + color + ";");
++    //}
++
++    private void sliderValueChanged(GridPane pane){
++        int valueR = (int) RSlider.getValue();
++        int valueG = (int) GSlider.getValue();
++        int valueB = (int) BSlider.getValue();
++        String color = String.format("#%02X%02X%02X", valueR, valueG, valueB);
++        pane.setStyle("-fx-background:" + color + ";");
++    }
++}
+\ No newline at end of file
+Index: L16-GUI2/src/EgenExGUI2/ExtEx4APP.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L16-GUI2/src/EgenExGUI2/ExtEx4APP.java b/L16-GUI2/src/EgenExGUI2/ExtEx4APP.java
+new file mode 100644
+--- /dev/null	(date 1647892007258)
++++ b/L16-GUI2/src/EgenExGUI2/ExtEx4APP.java	(date 1647892007258)
+@@ -0,0 +1,7 @@
++package EgenExGUI2;
++
++public class ExtEx4APP {
++    public static void main(String[] args) {
++        ExtEx4GUI.launch(ExtEx4GUI.class);
++    }
++}
+Index: L16-GUI2/src/EgenExGUI2/Ex3GENDER.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L16-GUI2/src/EgenExGUI2/Ex3GENDER.java b/L16-GUI2/src/EgenExGUI2/Ex3GENDER.java
+new file mode 100644
+--- /dev/null	(date 1647882091144)
++++ b/L16-GUI2/src/EgenExGUI2/Ex3GENDER.java	(date 1647882091144)
+@@ -0,0 +1,18 @@
++package EgenExGUI2;
++
++public class Ex3GENDER {
++
++    private String name;
++
++    public Ex3GENDER(String name){
++        this.name = name;
++    }
++
++    public String getName() { return name; }
++
++    @Override
++    public String toString() {
++        String s = name;
++        return s;
++    }
++}
+Index: L16-GUI2/src/EgenExGUI2/Ex3GUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L16-GUI2/src/EgenExGUI2/Ex3GUI.java b/L16-GUI2/src/EgenExGUI2/Ex3GUI.java
+new file mode 100644
+--- /dev/null	(date 1647885660546)
++++ b/L16-GUI2/src/EgenExGUI2/Ex3GUI.java	(date 1647885660546)
+@@ -0,0 +1,111 @@
++package EgenExGUI2;
++
++import javafx.application.Application;
++import javafx.geometry.HPos;
++import javafx.geometry.Insets;
++import javafx.scene.Scene;
++import javafx.scene.control.*;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++import java.util.ArrayList;
++
++public class Ex3GUI extends Application {
++
++
++
++    @Override
++    public void start(Stage stage) {
++        stage.setTitle("Boys and Girls");
++        GridPane pane = new GridPane();
++        this.initContent(pane);
++
++        Scene scene = new Scene(pane);
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    private final TextField txfName = new TextField();
++    private final ListView<String> lvwNames = new ListView<>();
++    private final ArrayList<String> boyNames = new ArrayList<>();
++    private final ArrayList<String> girlNames = new ArrayList<>();
++    private final ToggleGroup group = new ToggleGroup();
++    private boolean boy;
++    private void initContent(GridPane pane) {
++        this.initBoys();
++        this.initGirls();
++
++        pane.setGridLinesVisible(false);
++
++        pane.setPadding(new Insets(20));
++        pane.setHgap(10);
++        pane.setVgap(10);
++
++        RadioButton rbBoy = new RadioButton("Boys");
++        pane.add(rbBoy, 1,0);
++        rbBoy.setOnAction(event -> this.showBoy());
++        rbBoy.setToggleGroup(group);
++        GridPane.setHalignment(rbBoy, HPos.LEFT);
++
++        RadioButton rbGirl = new RadioButton("Girls");
++        pane.add(rbGirl, 1, 0);
++        rbGirl.setOnAction(event -> this.showGirl());
++        rbGirl.setToggleGroup(group);
++        GridPane.setHalignment(rbGirl, HPos.RIGHT);
++
++
++        Label lblNames = new Label("Names:");
++        pane.add(lblNames, 0, 1);
++        pane.add(lvwNames, 1, 1);
++        lvwNames.setPrefWidth(200);
++        lvwNames.setPrefHeight(200);
++
++        Label lblName = new Label("Name:");
++        pane.add(lblName, 0, 2);
++        pane.add(txfName, 1, 2);
++        Button btnAdd = new Button("Add Name");
++        pane.add(btnAdd, 1, 3);
++        GridPane.setHalignment(btnAdd, HPos.CENTER);
++        btnAdd.setOnAction(event -> this.addAction());
++    }
++
++    private void addAction() {
++        String name = txfName.getText().trim();
++        if (name.length() > 0){
++            Ex3GENDER n = new Ex3GENDER(name);
++            boyNames.add(String.valueOf(n));
++            girlNames.add(String.valueOf(n));
++            lvwNames.getItems().setAll(girlNames);
++            lvwNames.getItems().setAll(boyNames);
++        }
++        else {
++            Alert alert = new Alert(Alert.AlertType.ERROR);
++            alert.setTitle("Add Person");
++            alert.setHeaderText("No information given.");
++            alert.setContentText("Dummy, we need something to input, please write something...");
++            alert.show();
++        }
++    }
++
++    private void showGirl() {
++        lvwNames.getItems().setAll(girlNames);
++    }
++
++    private void showBoy() {
++        lvwNames.getItems().setAll(boyNames);
++    }
++
++    private void initGirls() {
++        boyNames.add(String.valueOf(new Ex3GENDER("Peter")));
++        boyNames.add(String.valueOf(new Ex3GENDER("Jørgen")));
++        boyNames.add(String.valueOf(new Ex3GENDER("Jesper")));
++        boyNames.add(String.valueOf(new Ex3GENDER("Patrick")));
++    }
++
++    private void initBoys() {
++        girlNames.add(String.valueOf(new Ex3GENDER("Julie")));
++        girlNames.add(String.valueOf(new Ex3GENDER("Louise")));
++        girlNames.add(String.valueOf(new Ex3GENDER("Laura")));
++        girlNames.add(String.valueOf(new Ex3GENDER("Elsa")));
++    }
++}
+Index: L16-GUI2/src/EgenExGUI2/Ex3APP.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L16-GUI2/src/EgenExGUI2/Ex3APP.java b/L16-GUI2/src/EgenExGUI2/Ex3APP.java
+new file mode 100644
+--- /dev/null	(date 1647882091217)
++++ b/L16-GUI2/src/EgenExGUI2/Ex3APP.java	(date 1647882091217)
+@@ -0,0 +1,7 @@
++package EgenExGUI2;
++
++public class Ex3APP {
++    public static void main(String[] args) {
++        Ex3GUI.launch(Ex3GUI.class);
++    }
++}
+Index: L10-SimpleCrabPigGame/src/Project1/craps/DiceThrower.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L10-SimpleCrabPigGame/src/Project1/craps/DiceThrower.java b/L10-SimpleCrabPigGame/src/Project1/craps/DiceThrower.java
+new file mode 100644
+--- /dev/null	(date 1646650304824)
++++ b/L10-SimpleCrabPigGame/src/Project1/craps/DiceThrower.java	(date 1646650304824)
+@@ -0,0 +1,91 @@
++package Project1.craps;
++
++public class DiceThrower {
++	// 2 dice with face count of 6 each
++	private Die die1, die2;
++	private int rollCount;
++	private int totalFaceValue;
++	private int faceValueSix;
++	private int sameFace;
++	private int maxFaceSum;
++	private double averageSum;
++
++	/**
++	 * Creates a DiceThrower object.
++	 */
++	public DiceThrower(){
++		die1 = new Die();
++		die2 = new Die();
++		this.rollCount = 0;
++		this.totalFaceValue = 0;
++		this.faceValueSix = 0;
++		this.sameFace = 0;
++		this.maxFaceSum = 0;
++		this.averageSum = 0;
++	}
++
++	public int getRollCount(){
++		return rollCount;
++	}
++
++	public int getTotalFaceValue(){
++		return totalFaceValue;
++	}
++
++	public int getFaceValueSix(){
++		return faceValueSix;
++	}
++
++	public int getSameFace(){
++		return sameFace;
++	}
++
++	public int getMaxFaceSum(){
++		return maxFaceSum;
++	}
++
++	public double getAverageSum(){
++		return averageSum;
++	}
++
++	/**
++	 * Rolls the 2 dice.
++	 */
++	public void roll() {
++		die1.roll();
++		die2.roll();
++		rollCount++;
++		totalFaceValue += sum();
++		if (die1.faceValue == 6){
++			faceValueSix++;
++		}
++		else if (die2.faceValue == 6){
++			faceValueSix++;
++		}
++		else if (die1.faceValue == 6 && die2.faceValue == 6){
++			faceValueSix += 2;
++		}
++		if (die1.faceValue == die2.faceValue){
++			sameFace++;
++		}
++		if (sum() > maxFaceSum){
++			maxFaceSum = sum();
++		}
++		averageSum = totalFaceValue / rollCount;
++	}
++
++	/**
++	 * Returns the sum of the face values in a roll.
++	 */
++	public int sum() {
++		return die1.faceValue + die2.faceValue;
++	}
++
++	/**
++	 * Returns a textual description of the roll of the 2 dice.
++	 * Example: Returns "(4,5)" for a roll of 4 and 5.
++	 */
++	public int rollDescription() {
++		return sum();
++	}
++}
+Index: L10-SimpleCrabPigGame/src/Project1/craps/Die.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L10-SimpleCrabPigGame/src/Project1/craps/Die.java b/L10-SimpleCrabPigGame/src/Project1/craps/Die.java
+new file mode 100644
+--- /dev/null	(date 1646649296118)
++++ b/L10-SimpleCrabPigGame/src/Project1/craps/Die.java	(date 1646649296118)
+@@ -0,0 +1,42 @@
++package Project1.craps;
++
++import java.util.Random;
++
++public class Die {
++	// number of faces
++	public int faceCount;
++	// value of upper face
++	public int faceValue = 0;
++	Random generator = new Random();
++	/**
++	 * Creates a die with the given face count and a random face value.
++	 */
++	public void DiePlus(int faceCount) {
++		this.faceCount = faceCount;
++		this.faceValue = 0;
++				//1 + generator.nextInt(faceCount);
++	}
++
++	/**
++	 * Creates a die with 6 faces and a random face value.
++	 */
++	public Die() {
++		this.faceCount = 6;
++		this.faceValue = 1 + generator.nextInt(faceCount);
++	}
++
++	public int getFaceCount(){
++		return faceCount;
++	}
++
++	public int getFaceValue(){
++		return faceValue;
++	}
++
++	/**
++	 * Rolls the die, resulting in a new face value.
++	 */
++	public void roll() {
++		faceValue = 1 + generator.nextInt(faceCount);
++	}
++}
+\ No newline at end of file
+Index: L16-GUI2/src/EgenExGUI2/Ex2GUIInput.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L16-GUI2/src/EgenExGUI2/Ex2GUIInput.java b/L16-GUI2/src/EgenExGUI2/Ex2GUIInput.java
+new file mode 100644
+--- /dev/null	(date 1648195604686)
++++ b/L16-GUI2/src/EgenExGUI2/Ex2GUIInput.java	(date 1648195604686)
+@@ -0,0 +1,92 @@
++package EgenExGUI2;
++
++import javafx.geometry.HPos;
++import javafx.geometry.Insets;
++import javafx.scene.Scene;
++import javafx.scene.control.*;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Modality;
++import javafx.stage.Stage;
++import javafx.stage.StageStyle;
++
++public class Ex2GUIInput extends Stage {
++    public Ex2GUIInput(String title, Stage owner) {
++        this.initOwner(owner);
++        this.initStyle(StageStyle.UTILITY);
++        this.initModality(Modality.APPLICATION_MODAL);
++        this.setMinHeight(100);
++        this.setMinWidth(200);
++        this.setResizable(false);
++
++        this.setTitle(title);
++        GridPane pane = new GridPane();
++        this.initContent(pane);
++
++        Scene scene = new Scene(pane);
++        this.setScene(scene);
++    }
++
++        private final TextField txfName = new TextField();
++        private final TextField txfTitle = new TextField();
++        private boolean senior;
++
++        private static Ex1Person p = null;
++
++        private void initContent(GridPane pane) {
++
++            pane.setGridLinesVisible(false);
++
++            pane.setPadding(new Insets(20));
++            pane.setHgap(10);
++            pane.setVgap(10);
++
++            Label lblName = new Label("Name:");
++            pane.add(lblName, 0, 0);
++            pane.add(txfName, 1, 0);
++
++            Label lblTitle = new Label("Title");
++            pane.add(lblTitle, 0, 1);
++            pane.add(txfTitle, 1, 1);
++
++            CheckBox cbxSenior = new CheckBox();
++            cbxSenior.setText("Senior");
++            pane.add(cbxSenior, 1, 2);
++            GridPane.setHalignment(cbxSenior, HPos.LEFT);
++            cbxSenior.setOnAction(event -> {
++                if (cbxSenior.isSelected()) {
++                    senior = true;
++                }
++                else {
++                    senior = false;
++                }
++            });
++
++            Button btnOk = new Button("OK");
++            pane.add(btnOk, 1, 2);
++            GridPane.setHalignment(btnOk, HPos.RIGHT);
++            btnOk.setOnAction(event -> this.okAction());
++        }
++
++    private void okAction() {
++        String name = txfName.getText().trim();
++        String title = txfTitle.getText().trim();
++        if (name.length() > 0 && title.length() > 0) {
++            p = new Ex1Person(name, title, senior);
++            txfName.clear();
++            txfTitle.clear();
++            txfName.requestFocus();
++            Ex2GUIInput.this.hide();
++        }
++        else {
++            Alert alert = new Alert(Alert.AlertType.ERROR);
++            alert.setTitle("Input Name");
++            alert.setHeaderText("Information missing");
++            alert.setContentText("Type Name and Title, choose Senior if Senior");
++            alert.show();
++        }
++    }
++
++    public static Ex1Person getPerson() {
++        return p;
++    }
++}
+\ No newline at end of file
+Index: L10-SimpleCrabPigGame/L10.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L10-SimpleCrabPigGame/L10.iml b/L10-SimpleCrabPigGame/L10.iml
+new file mode 100644
+--- /dev/null	(date 1646208827325)
++++ b/L10-SimpleCrabPigGame/L10.iml	(date 1646208827325)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: L16-GUI2/src/EgenExGUI2/Ex2GUIMain.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L16-GUI2/src/EgenExGUI2/Ex2GUIMain.java b/L16-GUI2/src/EgenExGUI2/Ex2GUIMain.java
+new file mode 100644
+--- /dev/null	(date 1648194908161)
++++ b/L16-GUI2/src/EgenExGUI2/Ex2GUIMain.java	(date 1648194908161)
+@@ -0,0 +1,69 @@
++package EgenExGUI2;
++
++import javafx.application.Application;
++import javafx.geometry.HPos;
++import javafx.geometry.Insets;
++import javafx.scene.Scene;
++import javafx.scene.control.Button;
++import javafx.scene.control.Label;
++import javafx.scene.control.ListView;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++import java.util.ArrayList;
++
++
++public class Ex2GUIMain extends Application {
++    @Override
++    public void start(Stage stage) {
++        stage.setTitle("Person Admin");
++        GridPane pane = new GridPane();
++        this.initContent(pane);
++
++        Scene scene = new Scene(pane);
++        stage.setScene(scene);
++        stage.show();
++
++        inputWindow = new Ex2GUIInput("Person Information", stage);
++    }
++
++    private final ListView<String> lvwResult = new ListView<>();
++    private final ArrayList<String> names = new ArrayList<>();
++    private Ex2GUIInput inputWindow;
++    private void initContent(GridPane pane) {
++        this.initPersons();
++
++        pane.setGridLinesVisible(false);
++
++        pane.setPadding(new Insets(20));
++        pane.setHgap(10);
++        pane.setVgap(10);
++
++        Label lblPersons = new Label("Persons:");
++        pane.add(lblPersons, 0, 0);
++
++        Button btnAddPerson = new Button("Add Person");
++        pane.add(btnAddPerson, 0, 0);
++        GridPane.setHalignment(btnAddPerson, HPos.RIGHT);
++        btnAddPerson.setOnAction(event -> this.addPerson());
++
++        pane.add(lvwResult, 0, 1);
++        lvwResult.setEditable(false);
++        lvwResult.setMaxWidth(250);
++        lvwResult.getItems().setAll(names);
++    }
++
++    private void initPersons() {
++        names.add(String.valueOf(new Ex1Person("Lars Larson", "Pornostjerne", false)));
++    }
++
++    private void addPerson() {
++        inputWindow.showAndWait();
++
++        if (Ex2GUIInput.getPerson() != null) {
++            Ex1Person p = inputWindow.getPerson();
++            names.add(String.valueOf(p));
++            lvwResult.getItems().setAll(names);
++        }
++    }
++}
+\ No newline at end of file
+Index: L16-GUI2/src/EgenExGUI2/Ex2APP.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L16-GUI2/src/EgenExGUI2/Ex2APP.java b/L16-GUI2/src/EgenExGUI2/Ex2APP.java
+new file mode 100644
+--- /dev/null	(date 1647874938448)
++++ b/L16-GUI2/src/EgenExGUI2/Ex2APP.java	(date 1647874938448)
+@@ -0,0 +1,7 @@
++package EgenExGUI2;
++
++public class Ex2APP {
++    public static void main(String[] args) {
++        Ex2GUIMain.launch(Ex2GUIMain.class);
++    }
++}
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 5d83e4f2679d59c4ed3601e3f2ced4cd0a5140cf)
++++ b/.idea/misc.xml	(date 1651044434156)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager">
++  <component name="ProjectRootManager" version="2" project-jdk-name="openjdk-17" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: L16-GUI2/src/EgenExGUI2/Ex1Person.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L16-GUI2/src/EgenExGUI2/Ex1Person.java b/L16-GUI2/src/EgenExGUI2/Ex1Person.java
+new file mode 100644
+--- /dev/null	(date 1647873077019)
++++ b/L16-GUI2/src/EgenExGUI2/Ex1Person.java	(date 1647873077019)
+@@ -0,0 +1,36 @@
++package EgenExGUI2;
++
++public class Ex1Person {
++
++    private String name;
++    private String titel;
++    private boolean senior;
++
++    public Ex1Person(String name, String titel, boolean senior){
++        this.name = name;
++        this.titel = titel;
++        this.senior = senior;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public String getTitel() {
++        return titel;
++    }
++
++    public boolean getSenior() {
++        return senior;
++    }
++
++    @Override
++    public String toString() {
++        String s = titel + ", " + name + " ";
++        if (senior) {
++            s = s + " [Senior]";
++        }
++        return s;
++    }
++
++}
+Index: L08-09-Loops/src/L09EgenEx/Ex6.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/L09EgenEx/Ex6.java b/L08-09-Loops/src/L09EgenEx/Ex6.java
+new file mode 100644
+--- /dev/null	(date 1646038774377)
++++ b/L08-09-Loops/src/L09EgenEx/Ex6.java	(date 1646038774377)
+@@ -0,0 +1,8 @@
++package L09EgenEx;
++
++
++public abstract class Ex6 {
++    public static void main(String[] args) {
++        Ex6Gui.launch(Ex6Gui.class);
++    }
++}
+Index: L08-09-Loops/src/L09EgenEx/Ex6Gui.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/L09EgenEx/Ex6Gui.java b/L08-09-Loops/src/L09EgenEx/Ex6Gui.java
+new file mode 100644
+--- /dev/null	(date 1646042592688)
++++ b/L08-09-Loops/src/L09EgenEx/Ex6Gui.java	(date 1646042592688)
+@@ -0,0 +1,52 @@
++package L09EgenEx;
++
++import javafx.application.Application;
++import javafx.scene.Scene;
++import javafx.scene.canvas.Canvas;
++import javafx.scene.canvas.GraphicsContext;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++public class Ex6Gui extends Application {
++
++    @Override
++    public void start(Stage stage) {
++        GridPane root = this.initContent();
++        Scene scene = new Scene(root);
++
++        stage.setTitle("Loops");
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    private GridPane initContent() {
++        GridPane pane = new GridPane();
++        Canvas canvas = new Canvas(200, 200);
++        pane.add(canvas, 0, 0);
++        this.drawShapes(canvas.getGraphicsContext2D());
++        return pane;
++    }
++
++    private void drawShapes(GraphicsContext graph) {
++        graph.strokeLine(0, 188, 185, 188);
++        graph.strokeLine(180, 184, 185, 188);
++        graph.strokeLine(180, 192, 185, 188);
++        graph.strokeText("0", 12, 178);
++        graph.strokeText("5", 90, 178);
++        graph.strokeText("10", 168, 178);
++        int y1 = 184;
++        int y2 = 192;
++        for (int i =0; i <= 10; i++){
++           int x = 10 + i * 16;
++           if (i == 0 || i == 5 || i == 10){
++               y1 -= 4;
++               y2 += 4;
++           }
++           else {
++               y1 = 184;
++               y2 = 192;
++           }
++           graph.strokeLine(x, y1, x, y2);
++        }
++    }
++}
+\ No newline at end of file
+Index: .idea/PRO1.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"JAVA_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\r\n    <exclude-output />\r\n    <content url=\"file://$MODULE_DIR$\" />\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/PRO1.iml b/.idea/PRO1.iml
+--- a/.idea/PRO1.iml	(revision 5d83e4f2679d59c4ed3601e3f2ced4cd0a5140cf)
++++ b/.idea/PRO1.iml	(date 1651221688623)
+@@ -2,8 +2,41 @@
+ <module type="JAVA_MODULE" version="4">
+   <component name="NewModuleRootManager" inherit-compiler-output="true">
+     <exclude-output />
+-    <content url="file://$MODULE_DIR$" />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/L-24-26-KAS - Project/src" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/L15-GUI1/src" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/L16-GUI2/src" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/L18-Yatzy/src" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/L23-Opsamling/src" isTestSource="false" />
++    </content>
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="module-library">
++      <library name="JUnit4">
++        <CLASSES>
++          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.13.1/junit-4.13.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar!/" />
++        </CLASSES>
++        <JAVADOC />
++        <SOURCES />
++      </library>
++    </orderEntry>
++    <orderEntry type="library" name="javafx" level="application" />
++    <orderEntry type="module-library">
++      <library name="JUnit5.8.1">
++        <CLASSES>
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.8.1/junit-jupiter-5.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.8.1/junit-jupiter-api-5.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.8.1/junit-platform-commons-1.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-params/5.8.1/junit-jupiter-params-5.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar!/" />
++        </CLASSES>
++        <JAVADOC />
++        <SOURCES />
++      </library>
++    </orderEntry>
+   </component>
+ </module>
+\ No newline at end of file
+Index: L16-GUI2/src/EgenExGUI2/Ex1APP.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L16-GUI2/src/EgenExGUI2/Ex1APP.java b/L16-GUI2/src/EgenExGUI2/Ex1APP.java
+new file mode 100644
+--- /dev/null	(date 1647860620489)
++++ b/L16-GUI2/src/EgenExGUI2/Ex1APP.java	(date 1647860620489)
+@@ -0,0 +1,7 @@
++package EgenExGUI2;
++
++public class Ex1APP {
++    public static void main(String[] args) {
++        Ex1GUI.launch(Ex1GUI.class);
++    }
++}
+Index: L16-GUI2/src/EgenExGUI2/Ex1GUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L16-GUI2/src/EgenExGUI2/Ex1GUI.java b/L16-GUI2/src/EgenExGUI2/Ex1GUI.java
+new file mode 100644
+--- /dev/null	(date 1648194131219)
++++ b/L16-GUI2/src/EgenExGUI2/Ex1GUI.java	(date 1648194131219)
+@@ -0,0 +1,112 @@
++package EgenExGUI2;
++
++import javafx.application.Application;
++import javafx.geometry.HPos;
++import javafx.geometry.Insets;
++import javafx.geometry.VPos;
++import javafx.scene.Scene;
++import javafx.scene.control.*;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++import java.util.ArrayList;
++
++
++public class Ex1GUI extends Application {
++
++
++
++    @Override
++    public void start(Stage stage) {
++        stage.setTitle("Person Admin");
++        GridPane pane = new GridPane();
++        this.initContent(pane);
++
++        Scene scene = new Scene(pane);
++        stage.setScene(scene);
++        stage.show();
++    }
++
++
++
++    private final TextField txfName = new TextField();
++    private final TextField txfTitle = new TextField();
++    private final ListView<String> lvwNames = new ListView<>();
++    private final ArrayList<String> names = new ArrayList<>();
++    private boolean senior;
++
++    private void initContent(GridPane pane) {
++        this.initPersons();
++
++        pane.setGridLinesVisible(false);
++
++        pane.setPadding(new Insets(20));
++        pane.setHgap(10);
++        pane.setVgap(10);
++
++        Label lblName = new Label("Name:");
++        pane.add(lblName, 0, 0);
++        pane.add(txfName, 1, 0);
++        GridPane.setHalignment(txfName, HPos.RIGHT);
++
++        Label lblTitle = new Label("Titel:");
++        pane.add(lblTitle, 0, 1);
++        pane.add(txfTitle, 1, 1);
++        GridPane.setHalignment(txfTitle, HPos.RIGHT);
++
++        CheckBox cbxSenior = new CheckBox();
++        cbxSenior.setText("Senior");
++        pane.add(cbxSenior, 1, 2);
++        GridPane.setHalignment(cbxSenior, HPos.LEFT);
++        cbxSenior.setOnAction(event -> {
++            if (cbxSenior.isSelected()) {
++                senior = true;
++            }
++            else {
++                senior = false;
++            }
++        });
++
++        Button btnAdd = new Button("Add Person");
++        pane.add(btnAdd, 1, 2);
++        GridPane.setHalignment(btnAdd, HPos.RIGHT);
++        btnAdd.setOnAction(event -> this.addAction());
++
++        Label lblPersons = new Label("Persons:");
++        pane.add(lblPersons, 0, 3);
++        GridPane.setValignment(lblPersons, VPos.TOP);
++        pane.add(lvwNames, 1, 3);
++        lvwNames.setPrefWidth(200);
++        lvwNames.setPrefHeight(200);
++        lvwNames.getItems().setAll(names);
++
++        //ChangeListener<String> listener = (ov, o, n) -> this.selectionChanged();
++        //lvwNames.getSelectionModel().selectedItemProperty().addListener(listener);
++    }
++
++    private void initPersons() {
++        names.add(String.valueOf(new Ex1Person("Lars Larson", "Pornostjerne", false)));
++    }
++
++    private void addAction() {
++        String name = txfName.getText().trim();
++        String titel = txfTitle.getText().trim();
++        if (name.length() > 0) {
++            Ex1Person p = new Ex1Person(name, titel, senior);
++            names.add(String.valueOf(p));
++            lvwNames.getItems().setAll(names);
++        }
++        else {
++            Alert alert = new Alert(Alert.AlertType.ERROR);
++            alert.setTitle("Add Person");
++            alert.setHeaderText("No information given.");
++            alert.setContentText("Dummy, we need something to input, please write something...");
++            alert.show();
++        }
++    }
++
++    //private void selectionChanged() {
++        //String selected = lvwNames.getSelectionModel().getSelectedItem();
++        //txfName.setText(selected);
++    //}
++}
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1651044434143)
++++ b/.idea/vcs.xml	(date 1651044434143)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: L13-2dimArray/src/EgenEx2dim/Ex2todim.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L13-2dimArray/src/EgenEx2dim/Ex2todim.java b/L13-2dimArray/src/EgenEx2dim/Ex2todim.java
+new file mode 100644
+--- /dev/null	(date 1647372773790)
++++ b/L13-2dimArray/src/EgenEx2dim/Ex2todim.java	(date 1647372773790)
+@@ -0,0 +1,41 @@
++package EgenEx2dim;
++
++import java.lang.reflect.Array;
++
++public class Ex2todim {
++    public static void main(String[] args) {
++        char[][] answers = {
++                {'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A'},
++                {'B','B','B','B','B','B','B','B','B','B',},
++                {'C','C','C','C','C','C','C','C','C','C'},
++                {'D','D','D','D','D','D','D','D','D','D'},
++                {'A','A','C','C','C','D','A','B','D','D'},
++                {'D','D','A','B','B','C','A','A','B','C'},
++                {'A','D','D','C','A','A','B','B','A','B'},
++                {'D','A','D','D','A','B','D','A','B','A'}
++        };
++        char[] correct = {'D','A','D','D','A','B','D','A','B','A'};
++        print(answers);
++        System.out.println(correctAnswers(answers, correct));
++    }
++    public static void print(char[][] answers){
++        for (int r = 0; r < answers.length; r++) {
++            for (int c = 0; c < answers[r].length; c++) {
++                System.out.printf("%2c", answers[r][c]);
++            }
++            System.out.println();
++        }
++    }
++    public static int correctAnswers(char[][] answers, char[] correct) {
++        int correctAnswers = 0;
++        char cA = 0;
++        for (int r1 = 0; r1 < answers.length; r1++) {
++            for (int r2 = 0; r2 < correct.length; r2++) {
++                if (answers[r1][r2] == correct[r2]) {
++                    cA = (char) correctAnswers++;
++                }
++            }
++        }
++        return cA;
++    }
++}
+Index: L08-09-Loops/src/L09EgenEx/Ex7.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/L09EgenEx/Ex7.java b/L08-09-Loops/src/L09EgenEx/Ex7.java
+new file mode 100644
+--- /dev/null	(date 1646042703059)
++++ b/L08-09-Loops/src/L09EgenEx/Ex7.java	(date 1646042703059)
+@@ -0,0 +1,7 @@
++package L09EgenEx;
++
++public abstract class Ex7 {
++    public static void main(String[] args) {
++        Ex7Gui.launch(Ex7Gui.class);
++    }
++}
+Index: L08-09-Loops/src/L09EgenEx/Ex7Gui.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/L09EgenEx/Ex7Gui.java b/L08-09-Loops/src/L09EgenEx/Ex7Gui.java
+new file mode 100644
+--- /dev/null	(date 1646044271104)
++++ b/L08-09-Loops/src/L09EgenEx/Ex7Gui.java	(date 1646044271104)
+@@ -0,0 +1,39 @@
++package L09EgenEx;
++
++import javafx.application.Application;
++import javafx.scene.Scene;
++import javafx.scene.canvas.Canvas;
++import javafx.scene.canvas.GraphicsContext;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++public class Ex7Gui extends Application {
++
++    @Override
++    public void start(Stage stage) {
++        GridPane root = this.initContent();
++        Scene scene = new Scene(root);
++
++        stage.setTitle("Loops");
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    private GridPane initContent() {
++        GridPane pane = new GridPane();
++        Canvas canvas = new Canvas(200, 200);
++        pane.add(canvas, 0, 0);
++        this.drawShapes(canvas.getGraphicsContext2D());
++        return pane;
++    }
++
++    private void drawShapes(GraphicsContext dataM) {
++        String d = "Datamatiker";
++        int x = 10;
++        int y = 10;
++        for (int i = 0; i <= 11; i++) {
++            dataM.strokeText(d.substring(0, i), x, y);
++            y = y + 15;
++        }
++    }
++}
+\ No newline at end of file
+Index: L08-09-Loops/src/L09EgenEx/Ex8.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/L09EgenEx/Ex8.java b/L08-09-Loops/src/L09EgenEx/Ex8.java
+new file mode 100644
+--- /dev/null	(date 1646044367694)
++++ b/L08-09-Loops/src/L09EgenEx/Ex8.java	(date 1646044367694)
+@@ -0,0 +1,7 @@
++package L09EgenEx;
++
++public abstract class Ex8 {
++    public static void main(String[] args) {
++        Ex8Gui.launch(Ex8Gui.class);
++    }
++}
+Index: L08-09-Loops/src/L09EgenEx/Ex8Gui.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/L09EgenEx/Ex8Gui.java b/L08-09-Loops/src/L09EgenEx/Ex8Gui.java
+new file mode 100644
+--- /dev/null	(date 1646047860692)
++++ b/L08-09-Loops/src/L09EgenEx/Ex8Gui.java	(date 1646047860692)
+@@ -0,0 +1,42 @@
++package L09EgenEx;
++
++import javafx.application.Application;
++import javafx.scene.Scene;
++import javafx.scene.canvas.Canvas;
++import javafx.scene.canvas.GraphicsContext;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++public class Ex8Gui extends Application {
++
++    @Override
++    public void start(Stage stage) {
++        GridPane root = this.initContent();
++        Scene scene = new Scene(root);
++
++        stage.setTitle("Loops");
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    private GridPane initContent() {
++        GridPane pane = new GridPane();
++        Canvas canvas = new Canvas(200, 200);
++        pane.add(canvas, 0, 0);
++        this.drawShapes(canvas.getGraphicsContext2D());
++        return pane;
++    }
++
++    private void drawShapes(GraphicsContext incline){
++        int x1 = 0;
++        int y1 = 160;
++        int y2 = 80;
++        for (int i = 0; i <= 9; i++){
++            x1 = x1 + 16;
++            y1 = y1 - 12;
++            y2 = y2 - 4;
++            incline.strokeLine(x1, y1, x1, y2);
++        }
++
++    }
++}
+\ No newline at end of file
+Index: L19-Forbindelser/L19-Forbindelser.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L19-Forbindelser/L19-Forbindelser.iml b/L19-Forbindelser/L19-Forbindelser.iml
+new file mode 100644
+--- /dev/null	(date 1649053808656)
++++ b/L19-Forbindelser/L19-Forbindelser.iml	(date 1649053808656)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: L12-Arraylist/L11-Arraylist.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L12-Arraylist/L11-Arraylist.iml b/L12-Arraylist/L11-Arraylist.iml
+new file mode 100644
+--- /dev/null	(date 1646813470289)
++++ b/L12-Arraylist/L11-Arraylist.iml	(date 1646813470289)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: L18-Yatzy/L18 Yatzy.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L18-Yatzy/L18 Yatzy.iml b/L18-Yatzy/L18 Yatzy.iml
+new file mode 100644
+--- /dev/null	(date 1648455225654)
++++ b/L18-Yatzy/L18 Yatzy.iml	(date 1648455225654)
+@@ -0,0 +1,28 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" name="javafx" level="application" />
++    <orderEntry type="module-library">
++      <library name="JUnit5.8.1">
++        <CLASSES>
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.8.1/junit-jupiter-5.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.8.1/junit-jupiter-api-5.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.8.1/junit-platform-commons-1.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-params/5.8.1/junit-jupiter-params-5.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar!/" />
++        </CLASSES>
++        <JAVADOC />
++        <SOURCES />
++      </library>
++    </orderEntry>
++  </component>
++</module>
+\ No newline at end of file
+Index: L08-09-Loops/L08-Loops.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/L08-Loops.iml b/L08-09-Loops/L08-Loops.iml
+new file mode 100644
+--- /dev/null	(date 1646036722584)
++++ b/L08-09-Loops/L08-Loops.iml	(date 1646036722584)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" name="javafx" level="application" />
++  </component>
++</module>
+\ No newline at end of file
+Index: L08-09-Loops/src/L09EgenEx/Ex9.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/L09EgenEx/Ex9.java b/L08-09-Loops/src/L09EgenEx/Ex9.java
+new file mode 100644
+--- /dev/null	(date 1646048326618)
++++ b/L08-09-Loops/src/L09EgenEx/Ex9.java	(date 1646048326618)
+@@ -0,0 +1,7 @@
++package L09EgenEx;
++
++public abstract class Ex9 {
++    public static void main(String[] args) {
++        Ex9Gui.launch(Ex9Gui.class);
++    }
++}
+Index: L08-09-Loops/src/L09EgenEx/Ex9Gui.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/L09EgenEx/Ex9Gui.java b/L08-09-Loops/src/L09EgenEx/Ex9Gui.java
+new file mode 100644
+--- /dev/null	(date 1646054699622)
++++ b/L08-09-Loops/src/L09EgenEx/Ex9Gui.java	(date 1646054699622)
+@@ -0,0 +1,45 @@
++package L09EgenEx;
++
++import javafx.application.Application;
++import javafx.scene.Scene;
++import javafx.scene.canvas.Canvas;
++import javafx.scene.canvas.GraphicsContext;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++public class Ex9Gui extends Application {
++
++    @Override
++    public void start(Stage stage) {
++        GridPane root = this.initContent();
++        Scene scene = new Scene(root);
++
++        stage.setTitle("Loops");
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    private GridPane initContent() {
++        GridPane pane = new GridPane();
++        Canvas canvas = new Canvas(200, 200);
++        pane.add(canvas, 0, 0);
++        this.drawShapes(canvas.getGraphicsContext2D());
++        return pane;
++    }
++
++    private void drawShapes(GraphicsContext fence) {
++        double x1 = 180;
++        double y1 = 190;
++        double y2 = 64;
++        int i = 0;
++        fence.strokeLine(x1, y1, x1, y2);
++        while (x1 > 5) {
++            i++;
++            y1 = y1 - (x1*0.088);
++            y2 = y2 + (x1*0.088);
++            x1 = x1 * 0.75;
++            fence.strokeLine(x1, y1, x1, y2);
++            System.out.println(i);
++        }
++    }
++}
+Index: L08-09-Loops/L11 Array Lister.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/L11 Array Lister.iml b/L08-09-Loops/L11 Array Lister.iml
+new file mode 100644
+--- /dev/null	(date 1646811299696)
++++ b/L08-09-Loops/L11 Array Lister.iml	(date 1646811299696)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: L06-IfElse/src/Ex2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.Scanner;\r\n\r\npublic class Ex2 {\r\n    public static void main(String[] args) {\r\n        Scanner in = new Scanner(System.in);\r\n\r\n        System.out.print(\"Number 1: \");\r\n        int order1 = in.nextInt();\r\n        System.out.print(\"Number 2: \");\r\n        int order2 = in.nextInt();\r\n        System.out.print(\"Number 3: \");\r\n        int order3 = in.nextInt();\r\n\r\n        if (order1 < order2 && order2 < order3) {\r\n            System.out.println(\"In Increasing Order\");\r\n        }\r\n        else if (order1 > order2 && order2 > order3) {\r\n            System.out.println(\"In Decreasing Order\");\r\n        }\r\n        else {\r\n            System.out.println(\"This is wrong\");\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L06-IfElse/src/Ex2.java b/L06-IfElse/src/Ex2.java
+--- a/L06-IfElse/src/Ex2.java	(revision 5d83e4f2679d59c4ed3601e3f2ced4cd0a5140cf)
++++ b/L06-IfElse/src/Ex2.java	(date 1645775157252)
+@@ -10,6 +10,7 @@
+         int order2 = in.nextInt();
+         System.out.print("Number 3: ");
+         int order3 = in.nextInt();
++        in.close();
+ 
+         if (order1 < order2 && order2 < order3) {
+             System.out.println("In Increasing Order");
+@@ -21,4 +22,4 @@
+             System.out.println("This is wrong");
+         }
+     }
+-}
++}
+\ No newline at end of file
+Index: L-24-26-KAS - Project/src/test/KASTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L-24-26-KAS - Project/src/test/KASTest.java b/L-24-26-KAS - Project/src/test/KASTest.java
+new file mode 100644
+--- /dev/null	(date 1651050306347)
++++ b/L-24-26-KAS - Project/src/test/KASTest.java	(date 1651050306347)
+@@ -0,0 +1,7 @@
++package test;
++
++public class KASTest {
++    public static void main(String[] args) {
++
++    }
++}
+Index: L13-2dimArray/L13-2dimArray.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L13-2dimArray/L13-2dimArray.iml b/L13-2dimArray/L13-2dimArray.iml
+new file mode 100644
+--- /dev/null	(date 1646979958880)
++++ b/L13-2dimArray/L13-2dimArray.iml	(date 1646979958880)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: L13-2dimArray/src/EgenEx2dim/Ex1todim.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L13-2dimArray/src/EgenEx2dim/Ex1todim.java b/L13-2dimArray/src/EgenEx2dim/Ex1todim.java
+new file mode 100644
+--- /dev/null	(date 1646993970526)
++++ b/L13-2dimArray/src/EgenEx2dim/Ex1todim.java	(date 1646993970526)
+@@ -0,0 +1,60 @@
++package EgenEx2dim;
++
++import java.util.Arrays;
++
++public class Ex1todim {
++    public static void main(String[] args) {
++        int[][] numbers = {
++                {0, 4, 3, 9, 6},
++                {1, 3, 5, 2, 2},
++                {3, 3, 1, 0, 1},
++                {0, 0, 9, 7, 1}
++        };
++        print(numbers);
++        System.out.println(sumRow(numbers, 3));
++        System.out.println(sumColumn(numbers, 0));
++        System.out.println(sum(numbers));
++    }
++    public static void print(int[][] numbers){
++        for (int r = 0; r < numbers.length; r++){
++            for (int c = 0; c < numbers[r].length; c++){
++                System.out.printf("%2d ", numbers[r][c]);
++            }
++            System.out.println();
++        }
++    }
++    public static int getValueAt(
++            int[][] numbers, int r, int c
++    ){
++        return numbers[r][c];
++    }
++    public static int setValueAt(
++            int[][] numbers, int r, int c, int value
++    ){
++        numbers[r][c] = value;
++        return value;
++    }
++    public static int sumRow(int[][] numbers, int r){
++        int sum = 0;
++        for (int c = 0; c < numbers[r].length; c++){
++            sum += numbers[r][c];
++        }
++        return sum;
++    }
++    public static int sumColumn(int[][] numbers, int c){
++        int sum = 0;
++        for (int r = 0; r < numbers.length; r++){
++            sum += numbers[r][c];
++        }
++        return sum;
++    }
++    public static int sum(int[][] numbers){
++        int sum = 0;
++        for (int r = 0; r < numbers.length; r++){
++            for (int c = 0; c < numbers[r].length; c++){
++                sum += numbers[r][c];
++            }
++        }
++        return sum;
++    }
++}
+Index: L06-IfElse/src/Ex3ChildClass.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class Ex3ChildClass {\r\n    private int age;\r\n    private boolean male;\r\n\r\n    public Ex3ChildClass(int age, boolean male){\r\n        this.age = age;\r\n        this.male = male;\r\n    }\r\n\r\n    public void setAge(int age){\r\n        this.age = age;\r\n    }\r\n\r\n    public int getAge() {\r\n        return age;\r\n    }\r\n\r\n    public void isMale(boolean male){\r\n        this.male = male;\r\n    }\r\n\r\n    public boolean getMale(){\r\n        return male;\r\n    }\r\n\r\n    public String institution() {\r\n        String result = null;\r\n        if (age >= 1 && age <= 2) {\r\n            result = \"Nursery\";\r\n            System.out.println(\"You're in a Nursery\");\r\n        }\r\n        else if (age >= 3 && age <= 5){\r\n            result = \"Kindergarten\";\r\n            System.out.println(\"You're in a Kindergarten\");\r\n        }\r\n        else if (age >= 6 && age <= 16){\r\n            result = \"School\";\r\n            System.out.println(\"You're in a School\");\r\n        }\r\n        else if (age >= 17){\r\n            result = \"Adult\";\r\n            System.out.println(\"You're an Adult\");\r\n        }\r\n\r\n        return result;\r\n    }\r\n\r\n    public String gender() {\r\n        String childgender;\r\n        if (male){\r\n            childgender = \"Boy\";\r\n            System.out.println(\"You Are a Boy\");\r\n        }\r\n        else {\r\n            childgender = \"Girl\";\r\n            System.out.println(\"You Are a Girl\");\r\n        }\r\n\r\n        return childgender;\r\n    }\r\n\r\n    public String team() {\r\n        String childteam;\r\n        if (male){\r\n            if (age < 8){\r\n                childteam = \"Young Boys\";\r\n                System.out.println(\"You Play on the Young Boys Team\");\r\n            }\r\n            else {\r\n                childteam = \"Cool Boys\";\r\n                System.out.println(\"You Play on the Cool Boys Team\");\r\n            }\r\n\r\n        }\r\n        else {\r\n            if (age < 8){\r\n                childteam = \"Tumbling Girls\";\r\n                System.out.println(\"You Play on the Tumbling Girls Team\");\r\n            }\r\n            else {\r\n                childteam = \"Springy Girls\";\r\n                System.out.println(\"You Play on the Springy Girls Team\");\r\n            }\r\n        }\r\n\r\n        return childteam;\r\n    }\r\n\r\n    public void printEx3ChildClass(){\r\n        System.out.println(\"Age: \" + age);\r\n        System.out.println(\"Gender Male: \" + male);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L06-IfElse/src/Ex3ChildClass.java b/L06-IfElse/src/Ex3ChildClass.java
+--- a/L06-IfElse/src/Ex3ChildClass.java	(revision 5d83e4f2679d59c4ed3601e3f2ced4cd0a5140cf)
++++ b/L06-IfElse/src/Ex3ChildClass.java	(date 1645775752612)
+@@ -90,4 +90,4 @@
+         System.out.println("Age: " + age);
+         System.out.println("Gender Male: " + male);
+     }
+-}
++}
+\ No newline at end of file
+Index: L08-09-Loops/src/EgenEx/Ex1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/EgenEx/Ex1.java b/L08-09-Loops/src/EgenEx/Ex1.java
+new file mode 100644
+--- /dev/null	(date 1645783179490)
++++ b/L08-09-Loops/src/EgenEx/Ex1.java	(date 1645783179490)
+@@ -0,0 +1,7 @@
++package EgenEx;
++
++public abstract class Ex1 {
++    public static void main(String[] args) {
++        Ex1Gui.launch(Ex1Gui.class);
++    }
++}
+Index: L08-09-Loops/src/EgenEx/Ex1Gui.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/EgenEx/Ex1Gui.java b/L08-09-Loops/src/EgenEx/Ex1Gui.java
+new file mode 100644
+--- /dev/null	(date 1645783987495)
++++ b/L08-09-Loops/src/EgenEx/Ex1Gui.java	(date 1645783987495)
+@@ -0,0 +1,47 @@
++package EgenEx;
++
++import javafx.application.Application;
++import javafx.scene.Scene;
++import javafx.scene.canvas.Canvas;
++import javafx.scene.canvas.GraphicsContext;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++public class Ex1Gui extends Application {
++
++    @Override
++    public void start(Stage stage) {
++        GridPane root = this.initContent();
++        Scene scene = new Scene(root);
++
++        stage.setTitle("Loops");
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    private GridPane initContent() {
++        GridPane pane = new GridPane();
++        Canvas canvas = new Canvas(200, 200);
++        pane.add(canvas, 0, 0);
++        this.drawShapes(canvas.getGraphicsContext2D());
++        return pane;
++    }
++
++    private void drawShapes(GraphicsContext arrow1) {
++        int x = 100;
++        int y = 75;
++        int z = x + 20;
++        arrow1.strokeLine(x, y, z, y - 4);
++        arrow1.strokeLine(x, y, z, y + 4);
++
++        x = 100;
++        y = 125;
++        arrow1.strokeLine(x, y, z, y - 4);
++        arrow1.strokeLine(x, y, z, y + 4);
++
++        x = 20;
++        y = 50;
++        arrow1.strokeLine(x, y, z, y - 4);
++        arrow1.strokeLine(x, y, z, y + 4);
++    }
++}
+Index: L08-09-Loops/src/EgenEx/Ex2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/EgenEx/Ex2.java b/L08-09-Loops/src/EgenEx/Ex2.java
+new file mode 100644
+--- /dev/null	(date 1645784258578)
++++ b/L08-09-Loops/src/EgenEx/Ex2.java	(date 1645784258578)
+@@ -0,0 +1,7 @@
++package EgenEx;
++
++public abstract class Ex2 {
++    public static void main(String[] args) {
++        Ex2Gui.launch(Ex2Gui.class);
++    }
++}
+Index: L08-09-Loops/src/EgenEx/Ex2Gui.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/EgenEx/Ex2Gui.java b/L08-09-Loops/src/EgenEx/Ex2Gui.java
+new file mode 100644
+--- /dev/null	(date 1645784759772)
++++ b/L08-09-Loops/src/EgenEx/Ex2Gui.java	(date 1645784759772)
+@@ -0,0 +1,40 @@
++package EgenEx;
++
++import javafx.application.Application;
++import javafx.scene.Scene;
++import javafx.scene.canvas.Canvas;
++import javafx.scene.canvas.GraphicsContext;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++public class Ex2Gui extends Application {
++
++    @Override
++    public void start(Stage stage) {
++        GridPane root = this.initContent();
++        Scene scene = new Scene(root);
++
++        stage.setTitle("Loops");
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    private GridPane initContent() {
++        GridPane pane = new GridPane();
++        Canvas canvas = new Canvas(200, 200);
++        pane.add(canvas, 0, 0);
++        this.drawShapes(canvas.getGraphicsContext2D());
++        return pane;
++    }
++
++    public void drawShapes(GraphicsContext line) {
++        int x1 = 100;
++        int y1 = 100;
++        int x2 = 20;
++        int y2 = 10;
++        while (x2 <=180){
++            line.strokeLine(x1, y1, x2, y2);
++            x2 = x2 + 20;
++        }
++    }
++}
+Index: L08-09-Loops/src/EgenEx/Ex3.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/EgenEx/Ex3.java b/L08-09-Loops/src/EgenEx/Ex3.java
+new file mode 100644
+--- /dev/null	(date 1645784841938)
++++ b/L08-09-Loops/src/EgenEx/Ex3.java	(date 1645784841938)
+@@ -0,0 +1,7 @@
++package EgenEx;
++
++public abstract class Ex3 {
++    public static void main(String[] args) {
++        Ex3Gui.launch(Ex3Gui.class);
++    }
++}
+Index: L08-09-Loops/src/EgenEx/Ex3Gui.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/EgenEx/Ex3Gui.java b/L08-09-Loops/src/EgenEx/Ex3Gui.java
+new file mode 100644
+--- /dev/null	(date 1645786409741)
++++ b/L08-09-Loops/src/EgenEx/Ex3Gui.java	(date 1645786409741)
+@@ -0,0 +1,43 @@
++package EgenEx;
++
++import javafx.application.Application;
++import javafx.scene.Scene;
++import javafx.scene.canvas.Canvas;
++import javafx.scene.canvas.GraphicsContext;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++public class Ex3Gui extends Application {
++
++    @Override
++    public void start(Stage stage) {
++        GridPane root = this.initContent();
++        Scene scene = new Scene(root);
++
++        stage.setTitle("Loops");
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    private GridPane initContent() {
++        GridPane pane = new GridPane();
++        Canvas canvas = new Canvas(200, 200);
++        pane.add(canvas, 0, 0);
++        this.drawShapes(canvas.getGraphicsContext2D());
++        return pane;
++    }
++
++    public void drawShapes(GraphicsContext line) {
++        int x1 = 90;
++        int y1 = 20;
++        int x2 = 110;
++        int y2 = 20;
++        while (y1 <=180){
++            line.strokeLine(x1, y1, x2, y2);
++            y1 = y1 + 40;
++            y2 = y2 + 40;
++            x1 = x1 - 20;
++            x2 = x2 + 20;
++        }
++    }
++}
+Index: L16-GUI2/L16-GUI2.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L16-GUI2/L16-GUI2.iml b/L16-GUI2/L16-GUI2.iml
+new file mode 100644
+--- /dev/null	(date 1647850696715)
++++ b/L16-GUI2/L16-GUI2.iml	(date 1647850696715)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" name="javafx" level="application" />
++  </component>
++</module>
+\ No newline at end of file
+Index: L07-RepitionAlt/src/ex2ex3student/Person.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ex2ex3student;\r\n\r\npublic class Person {\r\n    private final String name;\r\n    private final int dayOfBirth; // 1..31\r\n    private final int monthOfBirth; // 1..12\r\n    private final int yearOfBirth; // 1900..2010\r\n\r\n    public Person(String name, int yearOfBirth, int monthOfBirth, int dayOfBirth) {\r\n        this.name = name;\r\n        this.dayOfBirth = dayOfBirth;\r\n        this.monthOfBirth = monthOfBirth;\r\n        this.yearOfBirth = yearOfBirth;\r\n    }\r\n\r\n    public int calcAge(int year, int month, int day){\r\n        int age = 0;\r\n        if (month>=monthOfBirth){\r\n            if (day >= dayOfBirth){\r\n                if (year >= yearOfBirth){\r\n                    age = year - yearOfBirth;\r\n                    System.out.println(age);\r\n                }\r\n            }\r\n        }\r\n        else {\r\n            age = year - yearOfBirth - 1;\r\n            System.out.println(age);\r\n        }\r\n        return age;\r\n    }\r\n\r\n    public void printPerson() {\r\n        System.out.println(name + \", born \" + yearOfBirth + \"-\" + monthOfBirth + \"-\" + dayOfBirth);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L07-RepitionAlt/src/ex2ex3student/Person.java b/L07-RepitionAlt/src/ex2ex3student/Person.java
+--- a/L07-RepitionAlt/src/ex2ex3student/Person.java	(revision 5d83e4f2679d59c4ed3601e3f2ced4cd0a5140cf)
++++ b/L07-RepitionAlt/src/ex2ex3student/Person.java	(date 1645776938931)
+@@ -30,6 +30,10 @@
+         return age;
+     }
+ 
++    public boolean isLeapYear(int year) {
++        return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
++    }
++
+     public void printPerson() {
+         System.out.println(name + ", born " + yearOfBirth + "-" + monthOfBirth + "-" + dayOfBirth);
+     }
+Index: L07-RepitionAlt/src/ex2ex3student/PersonTester.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ex2ex3student;\r\n\r\npublic class PersonTester {\r\n\r\n    public static void main(String[] args) {\r\n        // Ex. 2\r\n        Person p1 = new Person(\"Gwion\", 2000, 7, 24);\r\n        Person p2 = new Person(\"Julie\", 2001, 7, 15);\r\n        Person p3 = new Person(\"Ib\", 2001, 7, 15);\r\n        p1.calcAge(2022, 2, 24);\r\n        p1.printPerson();\r\n        p2.calcAge(2022, 2, 24);\r\n        p2.printPerson();\r\n        p3.calcAge(2000, 7, 15);\r\n        p3.printPerson();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L07-RepitionAlt/src/ex2ex3student/PersonTester.java b/L07-RepitionAlt/src/ex2ex3student/PersonTester.java
+--- a/L07-RepitionAlt/src/ex2ex3student/PersonTester.java	(revision 5d83e4f2679d59c4ed3601e3f2ced4cd0a5140cf)
++++ b/L07-RepitionAlt/src/ex2ex3student/PersonTester.java	(date 1645776938910)
+@@ -1,5 +1,7 @@
+ package ex2ex3student;
+ 
++import java.time.Year;
++
+ public class PersonTester {
+ 
+     public static void main(String[] args) {
+@@ -13,5 +15,6 @@
+         p2.printPerson();
+         p3.calcAge(2000, 7, 15);
+         p3.printPerson();
++        p3.isLeapYear(2000);
+     }
+ }
+\ No newline at end of file
+Index: L08-09-Loops/src/EgenEx/Ex4.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/EgenEx/Ex4.java b/L08-09-Loops/src/EgenEx/Ex4.java
+new file mode 100644
+--- /dev/null	(date 1645786781844)
++++ b/L08-09-Loops/src/EgenEx/Ex4.java	(date 1645786781844)
+@@ -0,0 +1,7 @@
++package EgenEx;
++
++public abstract class Ex4 {
++    public static void main(String[] args) {
++        Ex4Gui.launch(Ex4Gui.class);
++    }
++}
+Index: L08-09-Loops/src/EgenEx/Ex4Gui.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/EgenEx/Ex4Gui.java b/L08-09-Loops/src/EgenEx/Ex4Gui.java
+new file mode 100644
+--- /dev/null	(date 1645787225216)
++++ b/L08-09-Loops/src/EgenEx/Ex4Gui.java	(date 1645787225216)
+@@ -0,0 +1,40 @@
++package EgenEx;
++
++import javafx.application.Application;
++import javafx.scene.Scene;
++import javafx.scene.canvas.Canvas;
++import javafx.scene.canvas.GraphicsContext;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++public class Ex4Gui extends Application {
++
++    @Override
++    public void start(Stage stage) {
++        GridPane root = this.initContent();
++        Scene scene = new Scene(root);
++
++        stage.setTitle("Loops");
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    private GridPane initContent() {
++        GridPane pane = new GridPane();
++        Canvas canvas = new Canvas(200, 200);
++        pane.add(canvas, 0, 0);
++        this.drawShapes(canvas.getGraphicsContext2D());
++        return pane;
++    }
++
++    public void drawShapes(GraphicsContext Circle) {
++        int x = 20;
++        int y = 100;
++        int r = 10;
++        while (r <=80){
++            Circle.strokeOval(x -r, y - r, 2 * r, 2 * r);
++            r = r + 10;
++            x = x + 10;
++        }
++    }
++}
+\ No newline at end of file
+Index: L17-Specifikationer/src/EgenEx/Ex2Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L17-Specifikationer/src/EgenEx/Ex2Main.java b/L17-Specifikationer/src/EgenEx/Ex2Main.java
+new file mode 100644
+--- /dev/null	(date 1648206630918)
++++ b/L17-Specifikationer/src/EgenEx/Ex2Main.java	(date 1648206630918)
+@@ -0,0 +1,24 @@
++package EgenEx;
++
++import java.time.LocalDate;
++import java.time.Period;
++import java.time.temporal.ChronoUnit;
++
++public class Ex2Main {
++    public static void main(String[] args) {
++        Ex2Rental r1 = new Ex2Rental(200, 4000, LocalDate.of(2022, 01, 01));
++        Ex2Rental r2 = new Ex2Rental(200, 4000, LocalDate.of(2023, 02, 01));
++
++        r1.getPricePrDay();
++        r1.setDays();
++        r1.getDays();
++        r1.getStartDate();
++        r1.setStartDate(LocalDate.of(2023, 01, 25));
++        r1.getEndDate();
++        r1.getPrice();
++
++        System.out.println(r1);
++        System.out.println(r2);
++        System.out.println("Period between Rental: ");
++    }
++}
+Index: L17-Specifikationer/src/EgenEx/Ex2Rental.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L17-Specifikationer/src/EgenEx/Ex2Rental.java b/L17-Specifikationer/src/EgenEx/Ex2Rental.java
+new file mode 100644
+--- /dev/null	(date 1648206630889)
++++ b/L17-Specifikationer/src/EgenEx/Ex2Rental.java	(date 1648206630889)
+@@ -0,0 +1,59 @@
++package EgenEx;
++
++import java.time.LocalDate;
++
++public class Ex2Rental {
++    private int number;
++    private int days;
++    private LocalDate startDate;
++    private LocalDate endDate;
++    private double price;
++    private static int lastUsedNumber = 1000;
++    private long between;
++
++    public Ex2Rental(int days, double price, LocalDate startDate) {
++        this.number = lastUsedNumber;
++        lastUsedNumber++;
++        this.days = days;
++        this.price = price;
++        this.startDate = startDate;
++    }
++
++    public double getPricePrDay() {
++        double PricePrDay = price / days;
++        return PricePrDay;
++    }
++
++    public void setDays() {
++        this.days = days;
++    }
++
++    public int getDays() {
++        return days;
++    }
++
++    public LocalDate getStartDate() {
++        return startDate;
++    }
++
++    public void setStartDate(LocalDate of) {
++        this.startDate = startDate;
++    }
++
++    public LocalDate getEndDate() {
++        this.endDate = startDate.plusDays(days);
++        return endDate;
++    }
++
++    public double getPrice() {
++        return price;
++    }
++
++    @Override
++    public String toString() {
++        String RentalInfo = "Rental Number: " + number + " Rental Days: " + days + "\n"
++                + "Rental Price: " + price + " Rental Period: " + startDate + " to " + endDate;
++        return RentalInfo;
++    }
++
++}
+Index: L08-09-Loops/src/L09EgenEx/Ex02.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/L09EgenEx/Ex02.java b/L08-09-Loops/src/L09EgenEx/Ex02.java
+new file mode 100644
+--- /dev/null	(date 1646134756305)
++++ b/L08-09-Loops/src/L09EgenEx/Ex02.java	(date 1646134756305)
+@@ -0,0 +1,16 @@
++package L09EgenEx;
++
++public class Ex02 {
++    public static void main(String[] args) {
++        for (int uneven = 0; uneven < 100; uneven++){
++            if (uneven % 2 != 0) {
++                System.out.println("Uneven Numbers: " + uneven);
++            }
++            else {
++            }
++        }
++        for (int threem = 300; threem >= 3; threem = threem - 3){
++            System.out.println("From 300 to 3: " + threem);
++        }
++    }
++}
+Index: L08-09-Loops/src/L09EgenEx/Ex03.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L08-09-Loops/src/L09EgenEx/Ex03.java b/L08-09-Loops/src/L09EgenEx/Ex03.java
+new file mode 100644
+--- /dev/null	(date 1646135109718)
++++ b/L08-09-Loops/src/L09EgenEx/Ex03.java	(date 1646135109718)
+@@ -0,0 +1,11 @@
++package L09EgenEx;
++
++public class Ex03 {
++    public static void main(String[] args) {
++        int s = 1;
++        for (int n = 1; n <= 5; n++){
++            s = s + n;
++            System.out.println(s + " ");
++        }
++    }
++}
+Index: L12-Arraylist/src/EgenEx/Ex1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L12-Arraylist/src/EgenEx/Ex1.java b/L12-Arraylist/src/EgenEx/Ex1.java
+new file mode 100644
+--- /dev/null	(date 1646823232316)
++++ b/L12-Arraylist/src/EgenEx/Ex1.java	(date 1646823232316)
+@@ -0,0 +1,76 @@
++package EgenEx;
++
++import java.util.Arrays;
++
++public class Ex1 {
++    public static void main(String[] args) {
++        //A
++        int[] values = new int[10];
++        System.out.print("A) ");
++        System.out.println(Arrays.toString(values));
++
++        //B
++        int[] moreValues = {2, 44, -23, 99, 8, -5, 7, 10, 20, 30};
++        System.out.print("B) ");
++        System.out.println(Arrays.toString(moreValues));
++
++        //C
++        for (int i = 0; i < values.length; i++){
++            values[i] += i;
++        }
++        System.out.print("C) ");
++        System.out.println(Arrays.toString(values));
++
++        //D
++        for (int i = 0; i < values.length; i++){
++            values[i] += i+2;
++        }
++        System.out.print("D) ");
++        System.out.println(Arrays.toString(values));
++
++        //E
++        int[] power = new int[10];
++        int j = 1;
++        for (int i = 0; i < power.length; i++){
++            power[i] += Math.pow(j, 2);
++            j++;
++        }
++        System.out.print("E) ");
++        System.out.println(Arrays.toString(power));
++
++        //F
++        int[] binary = new int[10];
++        binary[0] = 0;
++        for (int i = 0; i < binary.length; i++){
++            if (i % 2 == 0) {
++                binary[i] = 0;
++            }
++            else{
++                binary[i]++;
++            }
++        }
++        System.out.print("F) ");
++        System.out.println(Arrays.toString(binary));
++
++        //G
++        int[] four = new int[10];
++        for (int i = 0; i < four.length; i++){
++            if (i > 4){
++                four[i] = i - 5;
++            }
++            else{
++                four[i] = i;
++            }
++        }
++        System.out.print("G) ");
++        System.out.println(Arrays.toString(four));
++
++        //H
++        int[] three = new int[10];
++        for(int i = 0; i < three.length; i++){
++            three[i] = 2 * i + i % 2;
++        }
++        System.out.print("H) ");
++        System.out.println(Arrays.toString(three));
++    }
++}
+Index: L15-GUI1/L15-GUI1.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L15-GUI1/L15-GUI1.iml b/L15-GUI1/L15-GUI1.iml
+new file mode 100644
+--- /dev/null	(date 1647428763197)
++++ b/L15-GUI1/L15-GUI1.iml	(date 1647428763197)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" name="javafx" level="application" />
++  </component>
++</module>
+\ No newline at end of file
+Index: L13-2dimArray/L15-GUI.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L13-2dimArray/L15-GUI.iml b/L13-2dimArray/L15-GUI.iml
+new file mode 100644
+--- /dev/null	(date 1647428617036)
++++ b/L13-2dimArray/L15-GUI.iml	(date 1647428617036)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: L17-Specifikationer/src/EgenEx/Ex1Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L17-Specifikationer/src/EgenEx/Ex1Main.java b/L17-Specifikationer/src/EgenEx/Ex1Main.java
+new file mode 100644
+--- /dev/null	(date 1648203472290)
++++ b/L17-Specifikationer/src/EgenEx/Ex1Main.java	(date 1648203472290)
+@@ -0,0 +1,20 @@
++package EgenEx;
++
++public class Ex1Main {
++    public static void main(String[] args) {
++        Ex1BankAccount b1 = new Ex1BankAccount(200.0);
++        Ex1BankAccount b2 = new Ex1BankAccount(2002010.0);
++        Ex1BankAccount b3 = new Ex1BankAccount(204624620.0);
++        Ex1BankAccount b4 = new Ex1BankAccount(20012123.0);
++
++        System.out.println(b1);
++
++        b1.deposit(0.1);
++        b1.withdraw(200000000);
++
++        System.out.println(b1);
++        System.out.println(b2);
++        System.out.println(b3);
++        System.out.println(b4);
++    }
++}
+Index: L17-Specifikationer/src/EgenEx/Ex1BankAccount.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L17-Specifikationer/src/EgenEx/Ex1BankAccount.java b/L17-Specifikationer/src/EgenEx/Ex1BankAccount.java
+new file mode 100644
+--- /dev/null	(date 1648203457915)
++++ b/L17-Specifikationer/src/EgenEx/Ex1BankAccount.java	(date 1648203457915)
+@@ -0,0 +1,48 @@
++package EgenEx;
++
++public class Ex1BankAccount {
++    private int id;
++    private double balance;
++    private static int lastUsedId = 1000;
++
++    /*
++    * Stores double in Bank Account.
++    */
++    public Ex1BankAccount(double balance) {
++        this.balance = balance;
++        this.id = lastUsedId;
++        lastUsedId++;
++    }
++
++    /*
++    * Modifies balance positivly by amount.
++    */
++    public void deposit(double amount) {
++        balance += amount;
++    }
++
++    /*
++    * Modifies balance negativly by amount
++    * Can not be less than 0.
++     */
++    public void withdraw(double amount) {
++        balance -= amount;
++        if (balance < 0) {
++            balance += amount;
++            System.out.println("You Dont Have The Means");
++        }
++    }
++
++    /*
++    * Returnes balance.
++     */
++    public double getBalance() {
++        return balance;
++    }
++
++    @Override
++    public String toString() {
++        String BankInfo = id + " " + balance;
++        return BankInfo;
++    }
++}
+Index: L15-GUI1/src/EgenExGUI/Ex5GUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L15-GUI1/src/EgenExGUI/Ex5GUI.java b/L15-GUI1/src/EgenExGUI/Ex5GUI.java
+new file mode 100644
+--- /dev/null	(date 1647849511376)
++++ b/L15-GUI1/src/EgenExGUI/Ex5GUI.java	(date 1647849511376)
+@@ -0,0 +1,61 @@
++package EgenExGUI;
++
++import javafx.application.Application;
++import javafx.geometry.HPos;
++import javafx.geometry.Insets;
++import javafx.scene.Scene;
++import javafx.scene.control.Button;
++import javafx.scene.control.Label;
++import javafx.scene.control.TextArea;
++import javafx.scene.control.TextField;
++import javafx.scene.layout.GridPane;
++import javafx.stage.Stage;
++
++public class Ex5GUI extends Application {
++
++    @Override
++    public void start(Stage stage) {
++        stage.setTitle("Name List");
++        GridPane pane = new GridPane();
++        this.initContent(pane);
++        Scene scene = new Scene(pane);
++        stage.setScene(scene);
++        stage.centerOnScreen();
++        stage.show();
++    }
++
++    private final TextField txfName = new TextField();
++    private final TextArea txaName = new TextArea();
++    private void initContent(GridPane pane) {
++        pane.setGridLinesVisible(true);
++
++        pane.setPadding(new Insets(20));
++        pane.setHgap(10);
++        pane.setVgap(10);
++
++        Label lblName = new Label("Name:");
++        pane.add(lblName, 0, 0);
++
++        pane.add(txfName, 0, 2);
++
++        Button btnAdd = new Button("Add");
++        pane.add(btnAdd, 0, 3);
++        btnAdd.setCenterShape(true);
++        GridPane.setHalignment(btnAdd, HPos.CENTER);
++        btnAdd.setOnAction(event -> this.AddAction());
++
++        pane.add(txaName, 0, 4);
++        txaName.setPrefWidth(200);
++        txaName.setEditable(false);
++    }
++
++    private void AddAction() {
++        txaName.appendText(this.getName());
++    }
++
++    public String getName() {
++        StringBuilder name = new StringBuilder();
++        name.append(txfName.getText() + "\n");
++        return name.toString();
++    }
++}
+\ No newline at end of file
+Index: L15-GUI1/src/EgenExGUI/Ex5APP.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/L15-GUI1/src/EgenExGUI/Ex5APP.java b/L15-GUI1/src/EgenExGUI/Ex5APP.java
+new file mode 100644
+--- /dev/null	(date 1647550802265)
++++ b/L15-GUI1/src/EgenExGUI/Ex5APP.java	(date 1647550802265)
+@@ -0,0 +1,7 @@
++package EgenExGUI;
++
++public class Ex5APP {
++    public static void main(String[] args) {
++        Ex5GUI.launch(Ex5GUI.class);
++    }
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"6be7fa27-f936-418c-9253-86584583fb6e\" name=\"Changes\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"24YC8d7Cv5ILmEhjmYuQa6HoRWP\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"jdk.selected.JAVA_MODULE\" value=\"openjdk-17\" />\r\n    <property name=\"last_opened_file_path\" value=\"$USER_HOME$/OneDrive - EFIF\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Modules\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"preferences.lookFeel\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\gwion\\OneDrive - EFIF\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.E0105\">\r\n    <configuration name=\"E0101\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"DagensOpgaver.E0101\" />\r\n      <module name=\"L01-Intro\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"DagensOpgaver.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"E0102\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"DagensOpgaver.E0102\" />\r\n      <module name=\"L01-Intro\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"DagensOpgaver.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"E0103\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"DagensOpgaver.E0103\" />\r\n      <module name=\"L01-Intro\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"DagensOpgaver.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"E0104\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"DagensOpgaver.E0104\" />\r\n      <module name=\"L01-Intro\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"DagensOpgaver.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"E0105\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"DagensOpgaver.E0105\" />\r\n      <module name=\"L01-Intro\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"DagensOpgaver.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.E0105\" />\r\n        <item itemvalue=\"Application.E0104\" />\r\n        <item itemvalue=\"Application.E0103\" />\r\n        <item itemvalue=\"Application.E0102\" />\r\n        <item itemvalue=\"Application.E0101\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 5d83e4f2679d59c4ed3601e3f2ced4cd0a5140cf)
++++ b/.idea/workspace.xml	(date 1651221832951)
+@@ -4,12 +4,106 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="6be7fa27-f936-418c-9253-86584583fb6e" name="Changes" comment="" />
++    <list default="true" id="6be7fa27-f936-418c-9253-86584583fb6e" name="Changes" comment="">
++      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L-24-26-KAS - Project/src/test/KASTest.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/L08-Loops.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/L11 Array Lister.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/EgenEx/Ex1.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/EgenEx/Ex1Gui.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/EgenEx/Ex2.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/EgenEx/Ex2Gui.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/EgenEx/Ex3.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/EgenEx/Ex3Gui.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/EgenEx/Ex4.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/EgenEx/Ex4Gui.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/L09EgenEx/Ex02.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/L09EgenEx/Ex03.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/L09EgenEx/Ex6.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/L09EgenEx/Ex6Gui.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/L09EgenEx/Ex7.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/L09EgenEx/Ex7Gui.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/L09EgenEx/Ex8.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/L09EgenEx/Ex8Gui.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/L09EgenEx/Ex9.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L08-09-Loops/src/L09EgenEx/Ex9Gui.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L10-SimpleCrabPigGame/L10.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L10-SimpleCrabPigGame/src/Project1/craps/DiceThrower.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L10-SimpleCrabPigGame/src/Project1/craps/Die.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L12-Arraylist/L11-Arraylist.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L12-Arraylist/src/EgenEx/Ex1.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L13-2dimArray/L13-2dimArray.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L13-2dimArray/L15-GUI.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L13-2dimArray/src/EgenEx2dim/Ex1todim.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L13-2dimArray/src/EgenEx2dim/Ex2todim.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L15-GUI1/L15-GUI1.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L15-GUI1/src/EgenExGUI/Ex1APP.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L15-GUI1/src/EgenExGUI/Ex1GUI.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L15-GUI1/src/EgenExGUI/Ex2APP.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L15-GUI1/src/EgenExGUI/Ex2GUI.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L15-GUI1/src/EgenExGUI/Ex3APP.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L15-GUI1/src/EgenExGUI/Ex3GUI.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L15-GUI1/src/EgenExGUI/Ex4APP.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L15-GUI1/src/EgenExGUI/Ex4GUI.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L15-GUI1/src/EgenExGUI/Ex5APP.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L15-GUI1/src/EgenExGUI/Ex5GUI.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L16-GUI2/L16-GUI2.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L16-GUI2/src/EgenExGUI2/Ex1APP.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L16-GUI2/src/EgenExGUI2/Ex1GUI.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L16-GUI2/src/EgenExGUI2/Ex1Person.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L16-GUI2/src/EgenExGUI2/Ex2APP.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L16-GUI2/src/EgenExGUI2/Ex2GUIInput.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L16-GUI2/src/EgenExGUI2/Ex2GUIMain.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L16-GUI2/src/EgenExGUI2/Ex3APP.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L16-GUI2/src/EgenExGUI2/Ex3GENDER.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L16-GUI2/src/EgenExGUI2/Ex3GUI.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L16-GUI2/src/EgenExGUI2/ExtEx4APP.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L16-GUI2/src/EgenExGUI2/ExtEx4GUI.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L17-Specifikationer/L17-Specifikationer.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L17-Specifikationer/src/EgenEx/Ex1BankAccount.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L17-Specifikationer/src/EgenEx/Ex1Main.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L17-Specifikationer/src/EgenEx/Ex2Main.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L17-Specifikationer/src/EgenEx/Ex2Rental.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L18-Yatzy/L18 Yatzy.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L19-Forbindelser/L19-Forbindelser.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L23-Opsamling/L23-Opsamling.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L23-Opsamling/src/EgenEx/Dog.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L23-Opsamling/src/EgenEx/Race.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/L23-Opsamling/src/EgenEx/TestDog.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/PRO1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PRO1.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/L06-IfElse/src/Ex2.java" beforeDir="false" afterPath="$PROJECT_DIR$/L06-IfElse/src/Ex2.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/L06-IfElse/src/Ex3ChildClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/L06-IfElse/src/Ex3ChildClass.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/L07-RepitionAlt/src/ex2ex3student/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/L07-RepitionAlt/src/ex2ex3student/Person.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/L07-RepitionAlt/src/ex2ex3student/PersonTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/L07-RepitionAlt/src/ex2ex3student/PersonTester.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0101.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0101.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0102.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0102.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0103.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0103.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0104.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0104.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0105.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0105.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0106.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0106.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0107.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0107.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0108.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0108.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0110.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0110.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0111.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0111.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0114.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0114.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0115.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0115.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0116.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0116.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0117.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0117.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0118.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L01-Intro/DagensOpgaver/E0118.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L0203-Shapes/dagensopgaver/opg1gui.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L0203-Shapes/dagensopgaver/opg1gui.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L07-RepitionAlt/ex2ex3student/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L07-RepitionAlt/ex2ex3student/Person.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/L07-RepitionAlt/ex2ex3student/PersonTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L07-RepitionAlt/ex2ex3student/PersonTester.class" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
++  <component name="CodeInsightWorkspaceSettings">
++    <option name="optimizeImportsOnTheFly" value="true" />
++  </component>
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
+@@ -17,19 +111,27 @@
+       </list>
+     </option>
+   </component>
++  <component name="Git.Settings">
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
+   <component name="ProjectId" id="24YC8d7Cv5ILmEhjmYuQa6HoRWP" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+   <component name="PropertiesComponent">
++    <property name="Downloaded.Files.Path.Enabled" value="false" />
++    <property name="Repository.Attach.Annotations" value="false" />
++    <property name="Repository.Attach.JavaDocs" value="false" />
++    <property name="Repository.Attach.Sources" value="false" />
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
++    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+     <property name="jdk.selected.JAVA_MODULE" value="openjdk-17" />
+-    <property name="last_opened_file_path" value="$USER_HOME$/OneDrive - EFIF" />
+-    <property name="project.structure.last.edited" value="Modules" />
+-    <property name="project.structure.proportion" value="0.0" />
+-    <property name="project.structure.side.proportion" value="0.0" />
++    <property name="last_opened_file_path" value="$USER_HOME$/Documents/javafx-sdk-17.0.2/lib/javafx.graphics.jar" />
++    <property name="project.structure.last.edited" value="Global Libraries" />
++    <property name="project.structure.proportion" value="0.15" />
++    <property name="project.structure.side.proportion" value="0.2" />
+     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+   </component>
+   <component name="RecentsManager">
+@@ -37,13 +139,13 @@
+       <recent name="C:\Users\gwion\OneDrive - EFIF" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Application.E0105">
+-    <configuration name="E0101" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="DagensOpgaver.E0101" />
+-      <module name="L01-Intro" />
++  <component name="RunManager" selected="Application.Ex2APP">
++    <configuration name="Ex2APP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="EgenExGUI2.Ex2APP" />
++      <module name="PRO1" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="DagensOpgaver.*" />
++          <option name="PATTERN" value="EgenExGUI2.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -51,12 +153,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="E0102" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="DagensOpgaver.E0102" />
+-      <module name="L01-Intro" />
++    <configuration name="Ex3APP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="EgenExGUI2.Ex3APP" />
++      <module name="PRO1" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="DagensOpgaver.*" />
++          <option name="PATTERN" value="EgenExGUI2.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -64,12 +166,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="E0103" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="DagensOpgaver.E0103" />
+-      <module name="L01-Intro" />
++    <configuration name="Ex5APP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="EgenExGUI.Ex5APP" />
++      <module name="PRO1" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="DagensOpgaver.*" />
++          <option name="PATTERN" value="EgenExGUI.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -77,12 +179,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="E0104" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="DagensOpgaver.E0104" />
+-      <module name="L01-Intro" />
++    <configuration name="ExtEx4APP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="EgenExGUI2.ExtEx4APP" />
++      <module name="PRO1" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="DagensOpgaver.*" />
++          <option name="PATTERN" value="EgenExGUI2.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -90,12 +192,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="E0105" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="DagensOpgaver.E0105" />
+-      <module name="L01-Intro" />
++    <configuration name="KASTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="test.KASTest" />
++      <module name="PRO1" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="DagensOpgaver.*" />
++          <option name="PATTERN" value="test.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -105,13 +207,24 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.E0105" />
+-        <item itemvalue="Application.E0104" />
+-        <item itemvalue="Application.E0103" />
+-        <item itemvalue="Application.E0102" />
+-        <item itemvalue="Application.E0101" />
++        <item itemvalue="Application.Ex2APP" />
++        <item itemvalue="Application.Ex3APP" />
++        <item itemvalue="Application.ExtEx4APP" />
++        <item itemvalue="Application.Ex5APP" />
++        <item itemvalue="Application.KASTest" />
+       </list>
+     </recent_temporary>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
+ </project>
+\ No newline at end of file
