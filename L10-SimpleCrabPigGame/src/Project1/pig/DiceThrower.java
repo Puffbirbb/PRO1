@@ -3,7 +3,7 @@ package pig;
 public class DiceThrower {
 
         // 2 dice with face count of 6 each
-        private Die die1;
+        private pig.Die die1;
 
         // Fields:
         // 1. The roll count.
@@ -14,7 +14,7 @@ public class DiceThrower {
          * Creates a DiceThrower object.
          */
         public DiceThrower(){
-            die1 = new Die();
+            die1 = new pig.Die();
             rollCount = 0;
         }
 

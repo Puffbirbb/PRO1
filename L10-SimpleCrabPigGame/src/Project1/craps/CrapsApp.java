@@ -6,7 +6,7 @@ public class CrapsApp {
         System.out.println("Welcome to the game of Craps.");
 
         // TODO
-        craps.CrapsGame game = new craps.CrapsGame();
+        CrapsGame game = new CrapsGame();
         game.printRules();
         System.out.println();
 

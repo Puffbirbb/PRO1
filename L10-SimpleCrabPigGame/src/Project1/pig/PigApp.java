@@ -6,7 +6,7 @@ public class PigApp {
             System.out.println("Welcome to the PIG game (Get to 100 points)");
 
             // TODO
-            pig.PigGame game = new pig.PigGame();
+            PigGame game = new PigGame();
             game.printRules();
             System.out.println();
 
